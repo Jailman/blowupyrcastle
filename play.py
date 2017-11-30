@@ -105,6 +105,8 @@ while tran > 0.8:
 running = 1
 exitcode = 0
 n = 0
+ticksnow = pygame.time.get_ticks()
+gametime = ticksnow + 90000
 while running:
     badtimer-=1
     # 5 - clear the screen before drawing it again
@@ -196,7 +198,7 @@ while running:
     # 6.4 - Draw clock
     font = pygame.font.Font(None, 24)
     #此处为漏洞，当点击窗口标题时，时间依然在流逝，但是游戏却暂停了，导致点击标题即可获胜
-    survivedtext = font.render(str((90000-pygame.time.get_ticks())/60000)+":"+str((90000-pygame.time.get_ticks())/1000%60).zfill(2), True, (0,0,0)) 
+    survivedtext = font.render(str((gametime-pygame.time.get_ticks())/60000)+":"+str((gametime-pygame.time.get_ticks())/1000%60).zfill(2), True, (0,0,0)) 
     textRect = survivedtext.get_rect()
     textRect.topright=[635,5]
     screen.blit(survivedtext, textRect)
@@ -259,7 +261,7 @@ while running:
             playerpos[0]+=3
     
     #10 - Win/Lose check
-    if pygame.time.get_ticks()>=90000:
+    if pygame.time.get_ticks()>=gametime:
         running=0
         exitcode=1
     if healthvalue<=0:
