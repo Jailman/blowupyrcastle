@@ -51,7 +51,7 @@ framerate = pygame.time.Clock()
 
 
 cat = MySprite(screen)
-cat.load("resources/images/damao.png", 100, 100, 4)
+cat.load("resources/images/flame.png", 64, 64, 4)
 group = pygame.sprite.Group()
 group.add(cat)
 
@@ -67,7 +67,7 @@ while True:
     if key[pygame.K_ESCAPE]:
         exit()
         
-    screen.fill((0,0,100))
+    screen.fill((255,100,20)) #背景填充色
 
     group.update(ticks)
     group.draw(screen)
